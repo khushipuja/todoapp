@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1 style="text-align: center;">TODO App</h1>
+    <div class="app">
+        <form method="POST" action="/create-item">
+      <div class="description" style="border: none;">
+        <!-- Input for task description -->
+        <h2 class="title">DESCRIPTION</h2>
+        <input type="text" name="name" id="" placeholder="Enter what do you need to do">
+            </div>
+            <div class="custom-select" style="width:50%;height: 15%;">
+                <!-- Drop down checkbox to select category -->
+                <h2 class="title">SELECT CATEGORY</h2>
+                <select name="category">
+                  <option value="0">Select category:</option>
+                  <option value="1">Personal</option>
+                  <option value="2">Work</option>
+                  <option value="3">School</option>
+                  <option value="4">Cleaning</option>
+                  <option value="5">Other</option>
+                  
+                  
+                </select>
+              </div>
+              <div class="custom-select" style="width:50%;height: 15%; display: inline-block; left:50%; margin-top: -9.30%;">
+                <h2 class="title">SELECT DATE</h2>
+                <input type="date" name="date" id="date">
+              </div>
+              <div class="button">
+              
+                <button type="submit" class="btn btn-success">ADD TASK</button>
+              </form>
+             
+             
+            </div>
+
+
+            </form>
+            <form action="/delete-task" method="GET">
+                    
+                <% for(let i of items) { %>
+                    
+                        <!-- added tasks list -->
+                    <div id="tasks-list">
+              <div class="box">
+                <input type="checkbox" name="<%= i._id %>"> 
+              </div>
+                     <!-- /Task description/ -->
+                        <div class="task-name">
+                            <p id="task-description"><%= i.name %></p>
+                           
+                            <p id="due-date">Due Date: <%= i.date %></p>
+                        </div>
+                        <!-- Task category -->
+                          <div  class="category" style="background-color: <%=col[i.category-1]%>">
+                            <p id="task-category"> <%= arr[i.category-1] %></p>
+                          </div>
+                        
+                       
+              
+                    </div>
+              
+                <% } %>
+                    
+                    <!-- button to delete tasks -->
+                <div class="buttons">
+              
+                    <input type="submit" id="delete" value="DELETE TASK" class="btn btn-danger">
+                    
+              
+                </div>  
+              
+              </form>
+                
+        </div>
+        <script src="js/script.js"></script>
+</body>
+</html>
